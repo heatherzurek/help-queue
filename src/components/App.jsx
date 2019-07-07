@@ -20,6 +20,22 @@ class App extends React.Component {
     newMasterTicketList.push(newTicket);
     this.setState({masterTicketList: newMasterTicketList});
   }
+
+  componentDidMount() {
+    this.waitTimeUpdateTimer = setInterval(() =>
+      this.updateTicketElapsedWaitTime(),
+      5000
+    );
+  }
+
+  updateTicketElapsedWaitTime() {
+     console.log("check");
+     let newMasterTicketList = this.state.masterTicketList.slice();
+     newMasterTicketList.forEach((ticket) =>
+       ticket.formattedWaitTime = (ticket.timeOpen).fromNow(true)
+     );
+     this.setState({masterTicketList: newMasterTicketList})
+   }
   //Does this feel like a lot of code just to push something to an array? Are you wondering why we don't just call this.state.masterTicketList.push(newTicket) instead? Remember, we cannot alter state directly.. We can only alter state using setState(). And setState() takes a key value pair: The state value we're updating (masterTicketList in our case), and the new value we'd like to update it to.
 
   render(){
