@@ -7,7 +7,7 @@ function Ticket(props){
     <div>
       <style jsx>{`
           div {
-            background-color: red;
+            background-color: grey;
           }
           `}</style>
       <h3>{props.location} - {props.names}</h3>

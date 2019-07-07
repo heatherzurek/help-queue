@@ -7,7 +7,7 @@ function Header(){
     <div>
       <style jsx>{`
         div {
-          background-color: pink;
+          background-color: lightgreen;
           border: 1px solid black;
           border-radius: 5px;
           padding: 5px;
