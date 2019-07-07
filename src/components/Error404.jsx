@@ -8,8 +8,6 @@ function Error404(props){
     <div>
       <style jsx>{`
         div {
-          background-color: lightgreen;
-          border: 1px solid black;
           border-radius: 5px;
           padding: 5px;
           margin: 0 auto;
