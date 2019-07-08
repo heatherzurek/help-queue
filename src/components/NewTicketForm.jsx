@@ -19,21 +19,6 @@ function NewTicketForm(props){
 
   return (
     <div>
-      <style jsx>{`
-        div {
-          background-color: pink;
-          border: 1px solid black;
-          border-radius: 5px;
-          padding: 5px;
-          margin: 0 auto;
-          text-align: center;
-          width: 500px;
-        }
-        button {
-          background-color: white;
-          border: 1px solid black;
-        }
-        `}</style>
       <form onSubmit={handleNewTicketFormSubmission}>
         <input
           type='text'

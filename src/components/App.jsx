@@ -4,6 +4,7 @@ import TicketList from './TicketList';
 import NewTicketControl from './NewTicketControl';
 import Error404 from './Error404';
 import { Switch, Route } from 'react-router-dom';
+import Moment from 'moment';
 
 class App extends React.Component {
 
@@ -15,32 +16,70 @@ class App extends React.Component {
     this.handleAddingNewTicketToList = this.handleAddingNewTicketToList.bind(this);
   }
 
+  componentDidMount() {
+    console.log('componentDidMount');
+    this.waitTimeUpdateTimer = setInterval(() =>
+      this.updateTicketElapsedWaitTime(),
+    60000
+    );
+  }
+
+  componentWillUnmount(){
+    console.log('componentWillUnmount');
+    clearInterval(this.waitTimeUpdateTimer);
+  }
+
+  componentWillMount() {
+    console.log('componentWillMount');
+  }
+
+  componentWillReceiveProps() {
+    console.log('componentWillReceiveProps');
+  }
+
+  shouldComponentUpdate() {
+    console.log('shouldComponentUpdate');
+    return true;
+  }
+
+  componentWillUpdate() {
+    console.log('componentWillUpdate');
+  }
+
+  componentDidUpdate() {
+    console.log('componentDidUpdate');
+  }
+
+  updateTicketElapsedWaitTime() {
+    let newMasterTicketList = this.state.masterTicketList.slice();
+    newMasterTicketList.forEach((ticket) =>
+      ticket.formattedWaitTime = (ticket.timeOpen).fromNow(true)
+    );
+    this.setState({masterTicketList: newMasterTicketList});
+  }
+
   handleAddingNewTicketToList(newTicket){
     var newMasterTicketList = this.state.masterTicketList.slice();
+    newTicket.formattedWaitTime = (newTicket.timeOpen).fromNow(true);
     newMasterTicketList.push(newTicket);
     this.setState({masterTicketList: newMasterTicketList});
   }
 
-  componentDidMount() {
-    this.waitTimeUpdateTimer = setInterval(() =>
-      this.updateTicketElapsedWaitTime(),
-      5000
-    );
-  }
-
-  updateTicketElapsedWaitTime() {
-     console.log("check");
-     let newMasterTicketList = this.state.masterTicketList.slice();
-     newMasterTicketList.forEach((ticket) =>
-       ticket.formattedWaitTime = (ticket.timeOpen).fromNow(true)
-     );
-     this.setState({masterTicketList: newMasterTicketList})
-   }
-  //Does this feel like a lot of code just to push something to an array? Are you wondering why we don't just call this.state.masterTicketList.push(newTicket) instead? Remember, we cannot alter state directly.. We can only alter state using setState(). And setState() takes a key value pair: The state value we're updating (masterTicketList in our case), and the new value we'd like to update it to.
-
   render(){
     return (
       <div>
+        <style jsx>{`
+          div {
+            border: 1px solid black;
+            background-color: lightgrey;
+            border-radius: 5px;
+            padding: 5px;
+            margin: 0 auto;
+            text-align: center;
+            width: 800px;
+            font-family: sans-serif;
+          }
+          `}</style>
         <Header/>
         <Switch>
           <Route exact path='/' render={()=><TicketList ticketList={this.state.masterTicketList} />} />

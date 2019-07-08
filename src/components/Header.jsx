@@ -7,13 +7,10 @@ function Header(){
     <div>
       <style jsx>{`
         div {
-          background-color: lightgreen;
-          border: 1px solid black;
           border-radius: 5px;
           padding: 5px;
           margin: 0 auto;
           text-align: center;
-          width: 500px;
         }
         `}</style>
       <h1>Help Queue</h1>
