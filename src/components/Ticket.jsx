@@ -4,28 +4,28 @@ import Moment from 'moment';
 
 
 function Ticket(props){
-return(
-  <div>
-    <style jsx>{`
-        h3 {
-          width: 400px;
-          margin: 0 auto;
-        }
-        `}</style>
-      <h3>{props.location} - {props.names}</h3>
-      <h4>{props.formattedWaitTime}</h4>
-      <p><em>{props.issue}</em></p>
-      <hr/>
-    </div>
-  );
-}
+  return(
+    <div>
+      <style jsx>{`
+          h3 {
+            width: 400px;
+            margin: 0 auto;
+          }
+          `}</style>
+        <h3>{props.location} - {props.names}</h3>
+        <h4>{props.formattedWaitTime}</h4>
+        <p><em>{props.issue}</em></p>
+        <hr/>
+      </div>
+    );
+  }
 
 
-Ticket.propTypes = {
-  names: PropTypes.string.isRequired,
-  location: PropTypes.string.isRequired,
-  issue: PropTypes.string,
-  formattedWaitTime: PropTypes.string.isRequired,
-};
+  Ticket.propTypes = {
+    names: PropTypes.string.isRequired,
+    location: PropTypes.string.isRequired,
+    issue: PropTypes.string,
+    formattedWaitTime: PropTypes.string.isRequired,
+  };
 
-export default Ticket;
+  export default Ticket;
